@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fix xmlns="http://www.xentric.de/fix"
+     major="4"
+     minor="4"
+     copyright="Copyright (C) 1997-2017 Deutsche Boerse AG. All rights reserved."
+     version="Configuration 886,498,0,802@5d72d901905715620b23054c8b8bbc0eb0e256d3"
+     externalversion="T7-8.0-2">
+     
+    <buildenv>V4.0
+       </buildenv>
+    
+    <header>
+        <field name="BeginString" required="Y" />
+        <field name="BodyLength" required="Y" />
+        <field name="MsgType" required="Y" />
+        <field name="MsgSeqNum" required="Y" />
+        <field name="PossDupFlag" required="N" />
+        <field name="SenderCompID" required="Y" />
+        <field name="SendingTime" required="Y" />
+        <field name="TargetCompID" required="Y" />
+        <field name="PossResend" required="N" />
+        <field name="OrigSendingTime" required="N" />
+        <field name="LastMsgSeqNumProcessed" required="N" />
+    </header>
+
+    <trailer>
+        <field name="CheckSum" required="Y" />
+    </trailer>
+
+    <messages>
+        <message name="NewOrderSingle" msgtype="D" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <component name="TrdgSesGrp" required="N" />
+            <component name="PegInstructions" required="N" />
+            <component name="MtchgInst" required="N" />
+            <component name="DisplayInstruction" required="N" />
+            <field name="Account" required="N" />
+            <field name="ClOrdID" required="Y" />
+            <field name="Currency" required="N" />
+            <field name="ExecInst" required="N" />
+            <field name="OrderQty" required="Y" />
+            <field name="OrdType" required="Y" />
+            <field name="Price" required="N" />
+            <field name="Side" required="Y" />
+            <field name="Text" required="N" />
+            <field name="TimeInForce" required="N" />
+            <field name="TransactTime" required="Y" />
+            <field name="PositionEffect" required="N" />
+            <field name="StopPx" required="N" />
+            <field name="ExDestination" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="ExpireDate" required="N" />
+            <field name="CustOrderHandlingInst" required="N" />
+            <field name="TriggerType" required="N" />
+            <field name="TriggerPrice" required="N" />
+            <field name="TradingCapacity" required="Y" />
+            <field name="ComplianceText" required="N" />
+            <field name="FreeText2" required="N" />
+            <field name="FreeText3" required="N" />
+            <field name="FreeText4" required="N" />
+            <field name="PriceValidityCheckType" required="Y" />
+        </message>
+        <message name="CrossRequest" msgtype="U100" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <field name="Currency" required="N" />
+            <field name="OrderQty" required="Y" />
+            <field name="ExDestination" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="CrossReqID" required="Y" />
+            <field name="ComplianceText" required="N" />
+        </message>
+        <message name="CrossRequestAck" msgtype="U101" msgcat="app">
+            <field name="Text" required="N" />
+            <field name="CrossReqID" required="Y" />
+            <field name="CrossReqAckStatus" required="Y" />
+            <field name="ReturnCode" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="UTransactTime" required="Y" />
+            <field name="UExDestination" required="N" />
+        </message>
+        <message name="MassQuoteAcknowledgement" msgtype="b" msgcat="app">
+            <field name="Text" required="N" />
+            <field name="QuoteReqID" required="Y" />
+            <field name="QuoteStatus" required="Y" />
+            <field name="ReturnCode" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="UTransactTime" required="Y" />
+            <field name="UExDestination" required="N" />
+        </message>
+        <message name="NewOrderMultileg" msgtype="AB" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <component name="LegOrdGrp" required="Y" />
+            <field name="ClOrdID" required="Y" />
+            <field name="ExecInst" required="N" />
+            <field name="OrderQty" required="Y" />
+            <field name="OrdType" required="Y" />
+            <field name="Price" required="Y" />
+            <field name="Side" required="Y" />
+            <field name="Text" required="N" />
+            <field name="TimeInForce" required="N" />
+            <field name="TransactTime" required="Y" />
+            <field name="ExDestination" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="ExpireDate" required="N" />
+            <field name="TradingCapacity" required="Y" />
+            <field name="ComplianceText" required="N" />
+            <field name="FreeText2" required="N" />
+            <field name="FreeText3" required="N" />
+            <field name="PriceValidityCheckType" required="Y" />
+            <component name="MtchgInst" required="N" />
+            <field name="CustOrderHandlingInst" required="N" />
+        </message>
+        <message name="SecurityDefinitionRequest" msgtype="c" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <component name="InstrmtLegGrp" required="Y" />
+            <field name="SecurityReqID" required="Y" />
+            <field name="SecurityRequestType" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="MarketID" required="Y" />
+            <field name="ComplianceText" required="N" />
+        </message>
+        <message name="SecurityDefinition" msgtype="d" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <component name="InstrmtLegGrp" required="Y" />
+            <component name="MarketSegmentGrp" required="N" />
+            <field name="Text" required="N" />
+            <field name="SecurityReqID" required="Y" />
+            <field name="SecurityResponseID" required="Y" />
+            <field name="SecurityResponseType" required="Y" />
+            <field name="SecurityRejectReason" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="NumberOfSecurities" required="N" />
+        </message>
+        <message name="OrderCancelRequest" msgtype="F" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <field name="ClOrdID" required="Y" />
+            <field name="OrderID" required="N" />
+            <field name="OrderQty" required="Y" />
+            <field name="OrigClOrdID" required="Y" />
+            <field name="Side" required="Y" />
+            <field name="TransactTime" required="Y" />
+            <field name="ExDestination" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="UCurrency" required="N" />
+        </message>
+        <message name="OrderCancelReject" msgtype="9" msgcat="app">
+            <field name="ClOrdID" required="Y" />
+            <field name="OrderID" required="Y" />
+            <field name="OrdStatus" required="Y" />
+            <field name="OrigClOrdID" required="Y" />
+            <field name="ExDestination" required="Y" />
+            <field name="CxlRejReason" required="Y" />
+            <field name="CxlRejResponseTo" required="Y" />
+            <field name="ReturnCodeSource" required="Y" />
+            <field name="ReturnCode" required="Y" />
+            <field name="ReturnCodeText" required="Y" />
+            <field name="UTransactTime" required="N" />
+        </message>
+        <message name="ExecutionReport" msgtype="8" msgcat="app">
+            <component name="Parties" required="N" />
+            <component name="InstrmtLegExecGrp" required="N" />
+            <component name="Instrument" required="Y" />
+            <component name="PegInstructions" required="N" />
+            <component name="MtchgInst" required="N" />
+            <component name="DisplayInstruction" required="N" />
+            <field name="Account" required="N" />
+            <field name="AvgPx" required="Y" />
+            <field name="ClOrdID" required="N" />
+            <field name="CumQty" required="Y" />
+            <field name="Currency" required="N" />
+            <field name="ExecID" required="Y" />
+            <field name="ExecInst" required="N" />
+            <field name="LastPx" required="N" />
+            <field name="LastQty" required="N" />
+            <field name="OrderID" required="Y" />
+            <field name="OrderQty" required="Y" />
+            <field name="OrdStatus" required="Y" />
+            <field name="OrdType" required="N" />
+            <field name="OrigClOrdID" required="N" />
+            <field name="Price" required="N" />
+            <field name="Side" required="Y" />
+            <field name="Text" required="N" />
+            <field name="TimeInForce" required="N" />
+            <field name="PositionEffect" required="N" />
+            <field name="StopPx" required="N" />
+            <field name="ExDestination" required="Y" />
+            <field name="ExecType" required="Y" />
+            <field name="LeavesQty" required="Y" />
+            <field name="TradingSessionID" required="N" />
+            <field name="ExecRestatementReason" required="N" />
+            <field name="ExpireDate" required="N" />
+            <field name="SecondaryExecID" required="N" />
+            <field name="TradingSessionSubID" required="N" />
+            <field name="LastLiquidityInd" required="N" />
+            <field name="TrdMatchID" required="N" />
+            <field name="TriggerType" required="N" />
+            <field name="TriggerPrice" required="N" />
+            <field name="TradingCapacity" required="N" />
+            <field name="Crossed" required="N" />
+            <field name="PriceValidityCheckType" required="N" />
+            <field name="Triggered" required="N" />
+            <field name="ComplianceText" required="N" />
+            <field name="FreeText2" required="N" />
+            <field name="FreeText3" required="N" />
+            <field name="FreeText4" required="N" />
+            <field name="ReturnCode" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="ReturnCodeText" required="N" />
+            <field name="UTransactTime" required="N" />
+            <field name="CustOrderHandlingInst" required="N" />
+            <field name="OrderIDSfx" required="N" />
+        </message>
+        <message name="BusinessMessageReject" msgtype="j" msgcat="app">
+            <field name="RefSeqNum" required="Y" />
+            <field name="Text" required="N" />
+            <field name="RefMsgType" required="Y" />
+            <field name="BusinessRejectReason" required="Y" />
+            <field name="BusinessRejectRefID" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="ReturnCode" required="Y" />
+        </message>
+        <message name="Heartbeat" msgtype="0" msgcat="admin">
+            <field name="TestReqID" required="N" />
+        </message>
+        <message name="Logon" msgtype="A" msgcat="admin">
+            <field name="EncryptMethod" required="Y" />
+            <field name="HeartBtInt" required="Y" />
+            <field name="ResetSeqNumFlag" required="N" />
+            <field name="MaxMessageSize" required="N" />
+            <field name="Password" required="N" />
+            <field name="TestMessageIndicator" required="N" />
+            <field name="NextExpectedMsgSeqNum" required="N" />
+            <field name="NewPassword" required="N" />
+            <field name="FIXEngineName" required="N" />
+            <field name="FIXEngineVersion" required="N" />
+            <field name="FIXEngineVendor" required="N" />
+            <field name="ApplicationSystemName" required="N" />
+            <field name="ApplicationSystemVersion" required="N" />
+            <field name="ApplicationSystemVendor" required="N" />
+            <field name="DefaultCstmApplVerID" required="N" />
+        </message>
+        <message name="Logout" msgtype="5" msgcat="admin">
+            <field name="Text" required="N" />
+            <field name="SessionStatus" required="N" />
+        </message>
+        <message name="OrderCancelReplaceRequest" msgtype="G" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <component name="TrdgSesGrp" required="N" />
+            <component name="PegInstructions" required="N" />
+            <component name="DisplayInstruction" required="N" />
+            <component name="MtchgInst" required="N" />
+            <field name="Account" required="N" />
+            <field name="ClOrdID" required="Y" />
+            <field name="Currency" required="N" />
+            <field name="ExecInst" required="N" />
+            <field name="OrderQty" required="Y" />
+            <field name="OrdType" required="Y" />
+            <field name="OrigClOrdID" required="Y" />
+            <field name="Price" required="N" />
+            <field name="Side" required="Y" />
+            <field name="Text" required="N" />
+            <field name="TimeInForce" required="N" />
+            <field name="TransactTime" required="Y" />
+            <field name="PositionEffect" required="N" />
+            <field name="StopPx" required="N" />
+            <field name="ExDestination" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="ExpireDate" required="N" />
+            <field name="CustOrderHandlingInst" required="N" />
+            <field name="TriggerType" required="N" />
+            <field name="TriggerPrice" required="N" />
+            <field name="TradingCapacity" required="Y" />
+            <field name="ComplianceText" required="N" />
+            <field name="FreeText2" required="N" />
+            <field name="FreeText3" required="N" />
+            <field name="FreeText4" required="N" />
+            <field name="PriceValidityCheckType" required="Y" />
+        </message>
+        <message name="MultilegOrderCancelReplace" msgtype="AC" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="Instrument" required="Y" />
+            <component name="LegOrdGrp" required="Y" />
+            <field name="ClOrdID" required="Y" />
+            <field name="ExecInst" required="N" />
+            <field name="OrderQty" required="Y" />
+            <field name="OrdType" required="Y" />
+            <field name="OrigClOrdID" required="Y" />
+            <field name="Price" required="Y" />
+            <field name="Side" required="Y" />
+            <field name="Text" required="N" />
+            <field name="TimeInForce" required="N" />
+            <field name="TransactTime" required="Y" />
+            <field name="ExDestination" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="ExpireDate" required="N" />
+            <field name="TradingCapacity" required="Y" />
+            <field name="ComplianceText" required="N" />
+            <field name="FreeText2" required="N" />
+            <field name="FreeText3" required="N" />
+            <field name="PriceValidityCheckType" required="Y" />
+            <component name="MtchgInst" required="N" />
+            <field name="CustOrderHandlingInst" required="N" />
+        </message>
+        <message name="Reject" msgtype="3" msgcat="admin">
+            <field name="RefSeqNum" required="Y" />
+            <field name="Text" required="N" />
+            <field name="RefTagID" required="N" />
+            <field name="RefMsgType" required="Y" />
+            <field name="SessionRejectReason" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="ReturnCode" required="N" />
+        </message>
+        <message name="ResendRequest" msgtype="2" msgcat="admin">
+            <field name="BeginSeqNo" required="Y" />
+            <field name="EndSeqNo" required="Y" />
+        </message>
+        <message name="SequenceReset" msgtype="4" msgcat="admin">
+            <field name="GapFillFlag" required="N" />
+            <field name="NewSeqNo" required="Y" />
+        </message>
+        <message name="TestRequest" msgtype="1" msgcat="admin">
+            <field name="TestReqID" required="Y" />
+        </message>
+        <message name="UserPartyEntitlementsUpdateReport" msgtype="UCZ" msgcat="app">
+            <component name="Parties" required="Y" />
+            <field name="MarketID" required="N" />
+            <field name="TradeDate" required="Y" />
+            <field name="ListUpdateAction" required="Y" />
+            <field name="PartyDetailStatus" required="Y" />
+            <field name="UTransactTime" required="Y" />
+        </message>
+        <message name="UserPartyActionReport" msgtype="UDI" msgcat="app">
+            <component name="Parties" required="Y" />
+            <component name="RequestingParties" required="Y" />
+            <field name="PartyActionReportID" required="Y" />
+            <field name="PartyActionType" required="Y" />
+            <field name="PartyActionResponse" required="Y" />
+            <field name="TransactTime" required="N" />
+            <field name="TradeDate" required="N" />
+            <field name="MarketID" required="N" />
+        </message>
+        <message name="UserPartyRiskLimitsUpdateReport" msgtype="UCR" msgcat="app">
+            <component name="Parties" required="Y" />
+            <field name="MarketID" required="N" />
+            <field name="TradeDate" required="Y" />
+            <field name="ListUpdateAction" required="Y" />
+            <field name="RiskLimitAction" required="N" />
+            <field name="UTransactTime" required="Y" />
+        </message>
+        <message name="QuoteRequest" msgtype="R" msgcat="app">
+            <component name="QuoteReqGrp" required="Y" />
+            <field name="UExDestination" required="Y" />
+            <field name="QuoteReqID" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="ComplianceText" required="N" />
+        </message>
+        <message name="TradeCaptureReport" msgtype="AE" msgcat="app">
+            <component name="Instrument" required="Y" />
+            <component name="TrdCapRptSideGrp" required="Y" />
+            <field name="Currency" required="N" />
+            <field name="LastPx" required="Y" />
+            <field name="LastQty" required="Y" />
+            <field name="SettlDate" required="N" />
+            <field name="SettlCurrency" required="N" />
+            <field name="DeliveryType" required="N" />
+            <field name="UTransactTime" required="Y" />
+            <field name="PositionEffect" required="N" />
+            <field name="TradeDate" required="Y" />
+            <field name="PreviouslyReported" required="Y" />
+            <field name="TradeReportID" required="Y" />
+            <field name="TradeReportType" required="Y" />
+            <field name="TrdMatchID" required="Y" />
+            <field name="TradeID" required="Y" />
+            <field name="TradeNumber" required="N" />
+            <field name="MarketID" required="N" />
+            <field name="TransferReason" required="Y" />
+            <field name="TradingCapacity" required="Y" />
+            <field name="MatchSubType" required="N" />
+            <field name="MatchType" required="N" />
+            <field name="RelatedProductComplex" required="N" />
+            <field name="OrderSide" required="N" />
+            <field name="MultiLegReportingType" required="N" />
+            <field name="TotNumTradeReports" required="N" />
+            <field name="OrigTradeID" required="N" />
+            <field name="RelatedSymbol" required="N" />
+            <field name="RelatedSecurityID" required="N" />
+            <field name="ClearingTradePrice" required="N" />
+            <field name="ClearingTradeQty" required="N" />
+        </message>
+        <message name="UserRequest" msgtype="BE" msgcat="app">
+            <field name="ExDestination" required="Y" />
+            <field name="Username" required="Y" />
+            <field name="Password" required="N" />
+            <field name="UserRequestID" required="Y" />
+            <field name="UserRequestType" required="Y" />
+        </message>
+        <message name="UserResponse" msgtype="BF" msgcat="app">
+            <field name="ExDestination" required="Y" />
+            <field name="Username" required="Y" />
+            <field name="UserRequestID" required="Y" />
+            <field name="UserStatus" required="Y" />
+            <field name="UserStatusText" required="N" />
+        </message>
+        <message name="UserNotification" msgtype="UCB" msgcat="app">
+            <component name="UsernameGrp" required="N" />
+            <field name="Text" required="N" />
+            <field name="UserStatus" required="Y" />
+            <field name="UExDestination" required="N" />
+        </message>
+        <message name="TradingSessionStatus" msgtype="h" msgcat="app">
+            <field name="Text" required="N" />
+            <field name="TradingSessionID" required="Y" />
+            <field name="TradSesStatus" required="Y" />
+            <field name="MarketSegmentID" required="N" />
+            <field name="MarketID" required="N" />
+            <field name="TradSesEvent" required="Y" />
+            <field name="ReturnCodeSource" required="Y" />
+            <field name="UTransactTime" required="N" />
+            <field name="UTradeDate" required="N" />
+        </message>
+        <message name="UserOrderMassActionReport" msgtype="UBZ" msgcat="app">
+            <component name="Instrument" required="Y" />
+            <component name="Parties" required="N" />
+            <component name="NotAffectedOrdersGrp" required="N" />
+            <component name="AffectedOrdersGrp" required="N" />
+            <field name="Currency" required="N" />
+            <field name="Side" required="N" />
+            <field name="MarketID" required="N" />
+            <field name="Price" required="N" />
+            <field name="MassActionReportID" required="Y" />
+            <field name="UExecInst" required="N" />
+            <field name="ULastFragment" required="Y" />
+            <field name="MassActionReason" required="Y" />
+        </message>
+        <message name="UserOrderMassActionResponse" msgtype="UCAR" msgcat="app">
+            <component name="Instrument" required="Y" />
+            <component name="Parties" required="N" />
+            <component name="TargetParties" required="N" />
+            <component name="NotAffectedOrdersGrp" required="N" />
+            <component name="AffectedOrdersGrp" required="N" />
+            <field name="ClOrdID" required="N" />
+            <field name="Currency" required="N" />
+            <field name="Price" required="N" />
+            <field name="Side" required="N" />
+            <field name="MassActionReportID" required="Y" />
+            <field name="MassActionType" required="Y" />
+            <field name="MassActionScope" required="Y" />
+            <field name="MassActionResponse" required="Y" />
+            <field name="MassActionRejectReason" required="N" />
+            <field name="UExDestination" required="N" />
+            <field name="ULastFragment" required="Y" />
+            <field name="ReturnCode" required="N" />
+            <field name="ReturnCodeSource" required="N" />
+            <field name="ReturnCodeText" required="N" />
+        </message>
+        <message name="UserOrderMassActionRequest" msgtype="UCA" msgcat="app">
+            <component name="Instrument" required="Y" />
+            <component name="Parties" required="N" />
+            <component name="TargetParties" required="N" />
+            <field name="ClOrdID" required="Y" />
+            <field name="Currency" required="N" />
+            <field name="Price" required="N" />
+            <field name="Side" required="N" />
+            <field name="UExDestination" required="Y" />
+            <field name="TransactTime" required="Y" />
+            <field name="ComplianceID" required="N" />
+            <field name="MassActionType" required="Y" />
+            <field name="MassActionScope" required="Y" />
+        </message>
+    </messages>
+
+    <components>
+        <component name="Parties">
+            <group name="NoPartyIDs" required="Y">
+                <field name="PartyID" required="Y" />
+                <field name="PartyIDSource" required="Y" />
+                <field name="PartyRole" required="Y" />
+                <field name="NoPartySubIDs" required="N" />
+                <field name="PartySubID" required="N" />
+                <field name="PartySubIDType" required="N" />
+            </group>
+        </component>
+        <component name="RequestingParties">
+            <group name="NoRequestingPartyIDs" required="Y">
+                <field name="RequestingPartyID" required="Y" />
+                <field name="RequestingPartyIDSource" required="Y" />
+                <field name="RequestingPartyRole" required="Y" />
+            </group>
+        </component>
+        <component name="TargetParties">
+            <group name="NoTargetPartyIDs" required="Y">
+                <field name="TargetPartyID" required="Y" />
+                <field name="TargetPartyIDSource" required="Y" />
+                <field name="TargetPartyRole" required="Y" />
+            </group>
+        </component>
+        <component name="Instrument">
+            <field name="Symbol" required="Y" />
+            <field name="SecurityID" required="N" />
+            <field name="SecurityIDSource" required="N" />
+            <field name="ProductComplex" required="N" />
+            <field name="SecuritySubType" required="N" />
+            <group name="NoSecurityAltID" required="N">
+                <field name="SecurityAltID" required="N" />
+                <field name="SecurityAltIDSource" required="N" />
+            </group>
+        </component>
+        <component name="TrdgSesGrp">
+            <group name="NoTradingSessions" required="Y">
+                <field name="TradingSessionID" required="Y" />
+                <field name="TradingSessionSubID" required="Y" />
+            </group>
+        </component>
+        <component name="QuoteReqGrp">
+            <group name="NoRelatedSym" required="Y">
+                <component name="Instrument" required="Y" />
+                <field name="Side" required="N" />
+                <field name="OrderQty" required="N" />
+                <field name="Currency" required="N" />
+                <component name="Parties" required="Y" />
+            </group>
+        </component>
+        <component name="NotAffectedOrdersGrp">
+            <group name="NoNotAffectedOrders" required="Y">
+                <field name="NotAffOrigClOrdID" required="Y" />
+                <field name="NotAffectedOrderID" required="Y" />
+            </group>
+        </component>
+        <component name="AffectedOrdersGrp">
+            <group name="NoAffectedOrders" required="Y">
+                <field name="AffectedOrigClOrdID" required="Y" />
+                <field name="AffectedOrderID" required="Y" />
+            </group>
+        </component>
+        <component name="SecAltIDGrp">
+            <group name="NoSecurityAltID" required="N">
+                <field name="SecurityAltID" required="N" />
+                <field name="SecurityAltIDSource" required="N" />
+            </group>
+        </component>
+        <component name="DisplayInstruction">
+            <field name="DisplayQty" required="N" />
+            <field name="DisplayMethod" required="N" />
+            <field name="DisplayLowQty" required="N" />
+            <field name="DisplayHighQty" required="N" />
+        </component>
+        <component name="UsernameGrp">
+            <group name="NoUsernames" required="Y">
+                <field name="Username" required="Y" />
+            </group>
+        </component>
+        <component name="LegOrdGrp">
+            <group name="NoLegs" required="Y">
+                <field name="LegPositionEffect" required="Y" />
+                <field name="LegAccount" required="N" />
+            </group>
+        </component>
+        <component name="InstrmtLegExecGrp">
+            <group name="NoLegs" required="Y">
+                <field name="LegSymbol" required="Y" />
+                <field name="LegSecurityID" required="N" />
+                <field name="LegPositionEffect" required="N" />
+                <field name="LegLastPx" required="N" />
+                <field name="LegLastQty" required="N" />
+                <field name="LegExecID" required="N" />
+                <field name="LegAccount" required="N" />
+            </group>
+        </component>
+        <component name="InstrmtLegGrp">
+            <group name="NoLegs" required="Y">
+                <field name="LegSymbol" required="Y" />
+                <field name="LegSecurityID" required="Y" />
+                <field name="LegSecurityType" required="Y" />
+                <field name="LegRatioQty" required="Y" />
+                <field name="LegSide" required="Y" />
+                <field name="LegPrice" required="N" />
+            </group>
+        </component>
+        <component name="PegInstructions">
+            <field name="PegOffsetValue" required="Y" />
+            <field name="PegOffsetType" required="Y" />
+        </component>
+        <component name="MarketSegmentGrp">
+            <group name="NoMarketSegments" required="Y">
+                <field name="MarketID" required="Y" />
+                <field name="LowLimitPrice" required="Y" />
+                <field name="HighLimitPrice" required="Y" />
+                <field name="ImpliedMarketIndicator" required="Y" />
+                <field name="MultilegModel" required="Y" />
+            </group>
+        </component>
+        <component name="TrdCapRptSideGrp">
+            <group name="NoSides" required="Y">
+                <field name="Side" required="Y" />
+                <field name="SideLastQty" required="N" />
+                <field name="SideTradeID" required="N" />
+                <field name="SideTradeReportID" required="N" />
+                <component name="Parties" required="N" />
+                <field name="PartyIDClearingUnit" required="N" />
+                <field name="PartyIDSettlementUnit" required="N" />
+                <field name="Account" required="N" />
+                <field name="SettlCurrAmt" required="N" />
+                <field name="SettlCurrFxRate" required="N" />
+                <field name="Text" required="N" />
+                <field name="OrderCategory" required="N" />
+                <field name="SideLiquidityInd" required="N" />
+                <field name="StrategyLinkID" required="N" />
+                <field name="OrderID" required="N" />
+                <field name="ClOrdID" required="N" />
+                <field name="OrdType" required="N" />
+                <field name="CustOrderHandlingInst" required="N" />
+                <field name="FreeText2" required="N" />
+                <field name="FreeText3" required="N" />
+                <field name="FreeText4" required="N" />
+                <field name="OrderIDSfx" required="N" />
+                <field name="SideLastPx" required="N" />
+                <field name="UPrice" required="N" />
+                <field name="ULeavesQty" required="N" />
+            </group>
+        </component>
+        <component name="MtchgInst">
+            <group name="NoMatchInst" required="Y">
+                <field name="MatchInst" required="Y" />
+                <field name="MatchInstCrossID" required="Y" />
+            </group>
+        </component>
+    </components>
+
+    <fields>
+        <field number="1" name="Account" type="STRING">
+        </field>
+        <field number="6" name="AvgPx" type="PRICE"/>
+        <field number="7" name="BeginSeqNo" type="SEQNUM"/>
+        <field number="8" name="BeginString" type="STRING">
+            <value enum="FIX.4.4"  description="VERSION_44"/>
+        </field>
+        <field number="9" name="BodyLength" type="LENGTH"/>
+        <field number="10" name="CheckSum" type="STRING"/>
+        <field number="11" name="ClOrdID" type="STRING"/>
+        <field number="14" name="CumQty" type="QTY"/>
+        <field number="15" name="Currency" type="CURRENCY"/>
+        <field number="16" name="EndSeqNo" type="SEQNUM"/>
+        <field number="17" name="ExecID" type="STRING"/>
+        <field number="18" name="ExecInst" type="MULTIPLEVALUESTRING">
+            <value enum="H"  description="REINSTATE_ON_SYSTEM_FAILURE"/>
+            <value enum="Q"  description="CANCEL_ON_SYSTEM_FAILURE"/>
+            <value enum="a"  description="TRAILING_STOP_PEG"/>
+            <value enum="6"  description="PARTICIPATE_DO_NOT_INITIATE"/>
+        </field>
+        <field number="22" name="SecurityIDSource" type="STRING">
+            <value enum="4"  description="ISINNUMBER"/>
+            <value enum="M"  description="MARKETPLACE_ASSIGNED_IDENTIFIER"/>
+        </field>
+        <field number="31" name="LastPx" type="PRICE"/>
+        <field number="32" name="LastQty" type="QTY"/>
+        <field number="34" name="MsgSeqNum" type="SEQNUM"/>
+        <field number="35" name="MsgType" type="STRING">
+            <value enum="0"  description="HEARTBEAT"/>
+            <value enum="1"  description="TESTREQUEST"/>
+            <value enum="2"  description="RESENDREQUEST"/>
+            <value enum="3"  description="REJECT"/>
+            <value enum="4"  description="SEQUENCERESET"/>
+            <value enum="5"  description="LOGOUT"/>
+            <value enum="8"  description="EXECUTIONREPORT"/>
+            <value enum="9"  description="ORDERCANCELREJECT"/>
+            <value enum="A"  description="LOGON"/>
+            <value enum="D"  description="NEWORDERSINGLE"/>
+            <value enum="F"  description="ORDERCANCELREQUEST"/>
+            <value enum="G"  description="ORDERCANCELREPLACEREQUEST"/>
+            <value enum="R"  description="QUOTE_REQUEST"/>
+            <value enum="AB"  description="NEWORDERMULTILEG"/>
+            <value enum="AC"  description="MULTILEGORDERCANCELREPLACE"/>
+            <value enum="AE"  description="TRADE_CAPTURE_REPORT"/>
+            <value enum="BE"  description="USER_REQUEST"/>
+            <value enum="BF"  description="USER_RESPONSE"/>
+            <value enum="U100"  description="CROSS_REQUEST"/>
+            <value enum="U101"  description="CROSS_REQUEST_ACK"/>
+            <value enum="UBZ"  description="USER_ORDER_MASS_ACTION_REPORT"/>
+            <value enum="UCA"  description="USER_ORDER_MASS_ACTION_REQUEST"/>
+            <value enum="UCB"  description="USER_NOTIFICATION"/>
+            <value enum="UCR"  description="USER_PARTY_RISK_LIMITS_UPDATE_REPORT"/>
+            <value enum="UCZ"  description="USER_PARTY_ENTITLEMENTS_UPDATE_REPORT"/>
+            <value enum="UDI"  description="USER_PARTY_ACTION_REPORT"/>
+            <value enum="UCAR"  description="USER_ORDER_MASS_ACTION_RESPONSE"/>
+            <value enum="b"  description="MASS_QUOTE_ACKNOWLEDGEMENT"/>
+            <value enum="c"  description="SECURITYDEFINITIONREQUEST"/>
+            <value enum="d"  description="SECURITYDEFINITION"/>
+            <value enum="h"  description="TRADING_SESSION_STATUS"/>
+            <value enum="j"  description="BUSINESSMESSAGEREJECT"/>
+        </field>
+        <field number="36" name="NewSeqNo" type="SEQNUM"/>
+        <field number="37" name="OrderID" type="STRING"/>
+        <field number="38" name="OrderQty" type="QTY"/>
+        <field number="39" name="OrdStatus" type="CHAR">
+            <value enum="0"  description="NEW"/>
+            <value enum="1"  description="PARTIALLYFILLED"/>
+            <value enum="2"  description="FILLED"/>
+            <value enum="4"  description="CANCELED"/>
+            <value enum="6"  description="PENDING_CANCEL"/>
+            <value enum="8"  description="REJECTED"/>
+            <value enum="9"  description="SUSPENDED"/>
+            <value enum="A"  description="PENDING_NEW"/>
+            <value enum="E"  description="PENDING_REPLACE"/>
+        </field>
+        <field number="40" name="OrdType" type="CHAR">
+            <value enum="1"  description="MARKET"/>
+            <value enum="2"  description="LIMIT"/>
+            <value enum="3"  description="STOP"/>
+            <value enum="4"  description="STOPLIMIT"/>
+            <value enum="P"  description="PEGGED"/>
+        </field>
+        <field number="41" name="OrigClOrdID" type="STRING"/>
+        <field number="43" name="PossDupFlag" type="BOOLEAN">
+            <value enum="N"  description="POSSDUPNO"/>
+            <value enum="Y"  description="POSSDUPYES"/>
+        </field>
+        <field number="44" name="Price" type="PRICE"/>
+        <field number="45" name="RefSeqNum" type="SEQNUM"/>
+        <field number="48" name="SecurityID" type="STRING"/>
+        <field number="49" name="SenderCompID" type="STRING"/>
+        <field number="52" name="SendingTime" type="UTCTIMESTAMP"/>
+        <field number="54" name="Side" type="CHAR">
+            <value enum="1"  description="BUY"/>
+            <value enum="2"  description="SELL"/>
+        </field>
+        <field number="55" name="Symbol" type="STRING"/>
+        <field number="56" name="TargetCompID" type="STRING"/>
+        <field number="58" name="Text" type="STRING"/>
+        <field number="59" name="TimeInForce" type="CHAR">
+            <value enum="0"  description="DAY"/>
+            <value enum="1"  description="GOODTILLCANCEL"/>
+            <value enum="3"  description="IMMEDIATEORCANCEL"/>
+            <value enum="4"  description="FILLORKILL"/>
+            <value enum="6"  description="GOODTILLDATE"/>
+        </field>
+        <field number="60" name="TransactTime" type="UTCTIMESTAMP"/>
+        <field number="64" name="SettlDate" type="LOCALMKTDATE"/>
+        <field number="75" name="TradeDate" type="LOCALMKTDATE"/>
+        <field number="77" name="PositionEffect" type="STRING">
+            <value enum="O"  description="OPEN"/>
+            <value enum="C"  description="CLOSE"/>
+        </field>
+        <field number="97" name="PossResend" type="BOOLEAN">
+            <value enum="N"  description="POSSRESENDNO"/>
+            <value enum="Y"  description="POSSRESENDYES"/>
+        </field>
+        <field number="98" name="EncryptMethod" type="INT">
+            <value enum="0"  description="NONEOTHER"/>
+        </field>
+        <field number="99" name="StopPx" type="PRICE"/>
+        <field number="100" name="ExDestination" type="STRING"/>
+        <field number="102" name="CxlRejReason" type="INT">
+            <value enum="0"  description="TOO_LATE_TO_CANCEL"/>
+            <value enum="99"  description="OTHER"/>
+        </field>
+        <field number="108" name="HeartBtInt" type="INT"/>
+        <field number="112" name="TestReqID" type="STRING"/>
+        <field number="119" name="SettlCurrAmt" type="AMT"/>
+        <field number="120" name="SettlCurrency" type="CURRENCY"/>
+        <field number="122" name="OrigSendingTime" type="UTCTIMESTAMP"/>
+        <field number="123" name="GapFillFlag" type="BOOLEAN">
+            <value enum="N"  description="SEQUENCERESET"/>
+            <value enum="Y"  description="GAPFILL"/>
+        </field>
+        <field number="131" name="QuoteReqID" type="STRING"/>
+        <field number="141" name="ResetSeqNumFlag" type="BOOLEAN">
+            <value enum="N"  description="NO"/>
+            <value enum="Y"  description="YES"/>
+        </field>
+        <field number="146" name="NoRelatedSym" type="NUMINGROUP">
+            <value enum="1"  description="ONE"/>
+        </field>
+        <field number="150" name="ExecType" type="CHAR">
+            <value enum="0"  description="NEW"/>
+            <value enum="4"  description="CANCELED"/>
+            <value enum="5"  description="REPLACE"/>
+            <value enum="6"  description="PENDING_CANCEL"/>
+            <value enum="8"  description="REJECTED"/>
+            <value enum="9"  description="SUSPENDED"/>
+            <value enum="A"  description="PENDING_NEW"/>
+            <value enum="D"  description="RESTATED"/>
+            <value enum="E"  description="PENDING_REPLACE"/>
+            <value enum="F"  description="TRADE"/>
+            <value enum="L"  description="TRIGGERED_OR_ACTIVATED_BY_SYSTEM"/>
+        </field>
+        <field number="151" name="LeavesQty" type="QTY"/>
+        <field number="155" name="SettlCurrFxRate" type="FLOAT"/>
+        <field number="211" name="PegOffsetValue" type="FLOAT"/>
+        <field number="297" name="QuoteStatus" type="INT">
+            <value enum="0"  description="ACCEPTED"/>
+            <value enum="5"  description="REJECTED"/>
+        </field>
+        <field number="320" name="SecurityReqID" type="STRING"/>
+        <field number="321" name="SecurityRequestType" type="STRING">
+            <value enum="6"  description="Product"/>
+        </field>
+        <field number="322" name="SecurityResponseID" type="STRING"/>
+        <field number="323" name="SecurityResponseType" type="STRING">
+            <value enum="2"  description="AcceptWithRevisions"/>
+            <value enum="5"  description="RejSecProp"/>
+        </field>
+        <field number="336" name="TradingSessionID" type="STRING">
+            <value enum="1"  description="DAY"/>
+        </field>
+        <field number="340" name="TradSesStatus" type="INT">
+            <value enum="0"  description="UNKNOWN"/>
+            <value enum="1"  description="HALTED"/>
+            <value enum="2"  description="OPEN"/>
+            <value enum="3"  description="CLOSED"/>
+        </field>
+        <field number="369" name="LastMsgSeqNumProcessed" type="SEQNUM"/>
+        <field number="371" name="RefTagID" type="INT"/>
+        <field number="372" name="RefMsgType" type="STRING"/>
+        <field number="373" name="SessionRejectReason" type="INT">
+            <value enum="0"  description="INVALID_TAG_NUMBER"/>
+            <value enum="1"  description="REQUIRED_TAG_MISSING"/>
+            <value enum="2"  description="TAG_NOT_DEFINED_FOR_THIS_MESSAGE_TYPE"/>
+            <value enum="3"  description="UNDEFINED_TAG"/>
+            <value enum="4"  description="TAG_SPECIFIED_WITHOUT_A_VALUE"/>
+            <value enum="5"  description="VALUE_IS_INCORRECT_FOR_THIS_TAG"/>
+            <value enum="6"  description="INCORRECT_DATA_FORMAT_FOR_VALUE"/>
+            <value enum="7"  description="DECRYPTION_PROBLEM"/>
+            <value enum="8"  description="SIGNATURE_PROBLEM"/>
+            <value enum="9"  description="COMPID_PROBLEM"/>
+            <value enum="10"  description="SENDING_TIME_ACCURACY_PROBLEM"/>
+            <value enum="11"  description="INVALIDMSGTYPE"/>
+            <value enum="12"  description="XML_VALIDATION_ERROR"/>
+            <value enum="13"  description="TAGAPPEARSMORETHANONCE"/>
+            <value enum="14"  description="TAGSPECIFIEDOUTOFREQUIREDORDER"/>
+            <value enum="15"  description="REPEATINGGROUPFIELDSOUTOFORDER"/>
+            <value enum="16"  description="INCORRECT_NUMINGROUP_COUNT_FOR_REPEATING_GROUP"/>
+            <value enum="17"  description="NONDATAVALUEINCLUDESFIELDDELIMITER"/>
+            <value enum="18"  description="INVALID_UNSUPPORTED_APPLICATION_VERSION"/>
+            <value enum="99"  description="OTHER"/>
+        </field>
+        <field number="376" name="ComplianceID" type="STRING"/>
+        <field number="378" name="ExecRestatementReason" type="INT">
+            <value enum="0"  description="GT_CORPORATE_ACTION"/>
+            <value enum="1"  description="GT_RENEWAL"/>
+            <value enum="8"  description="EXCHANGE_OPTION"/>
+            <value enum="100"  description="UNKNOWN_ORDER_STATE"/>
+            <value enum="101"  description="ORDER_ADD_ACCEPTED"/>
+            <value enum="102"  description="ORDER_MODIFY_ACCEPTED"/>
+            <value enum="103"  description="ORDER_DELETE_ACCEPTED"/>
+            <value enum="105"  description="IOC_ORDER_CANCELED"/>
+            <value enum="107"  description="FOK_ORDER_CANCELED"/>
+            <value enum="122"  description="INSTRUMENT_STATE_CHANGE"/>
+            <value enum="135"  description="MARKET_ORDER_TRIGGERED"/>
+            <value enum="146"  description="END_OF_DAY_PROCESSING"/>
+            <value enum="148"  description="ORDER_EXPIRATION"/>
+            <value enum="149"  description="CLOSING_AUCTION_ONLY_ORDER_ACTIVATED"/>
+            <value enum="150"  description="CLOSING_AUCTION_ONLY_ORDER_INACTIVATED"/>
+            <value enum="151"  description="OAO_ORDER_ACTIVATED"/>
+            <value enum="152"  description="OAO_ORDER_INACTIVATED"/>
+            <value enum="153"  description="AAO_ORDER_ACTIVATED"/>
+            <value enum="154"  description="AAO_ORDER_INACTIVATED"/>
+            <value enum="155"  description="ORDER_REFRESHED"/>
+            <value enum="164"  description="OCO_ORDER_TRIGGERED"/>
+            <value enum="172"  description="STOP_ORDER_TRIGGERED"/>
+            <value enum="181"  description="OWNERSHIP_CHANGED"/>
+            <value enum="197"  description="ORDER_CANCELLATION_PENDING"/>
+            <value enum="199"  description="PENDING_CANCELLATION_EXECUTED"/>
+            <value enum="212"  description="BOOK_OR_CANCEL_CANCELED"/>
+            <value enum="213"  description="TRAILING_STOP_UPDATE"/>
+            <value enum="237"  description="EXCEEDS_MAXIMUM_QUANTITY"/>
+            <value enum="238"  description="INVALID_LIMIT_PRICE"/>
+            <value enum="241"  description="USER_DOES_NOT_EXIST"/>
+            <value enum="242"  description="SESSION_DOES_NOT_EXIST"/>
+            <value enum="243"  description="INVALID_STOP_PRICE"/>
+            <value enum="244"  description="MARKED_FOR_DELETION"/>
+            <value enum="245"  description="INSTRUMENT_DOES_NOT_EXIST"/>
+            <value enum="246"  description="BUSINESS_UNIT_RISK_EVENT"/>
+            <value enum="257"  description="INITIAL_CLEANUP"/>
+            <value enum="292"  description="DIVIDENT_PAYMENT"/>
+            <value enum="294"  description="LAST_TRADING_DAY"/>
+            <value enum="295"  description="TRADING_PARAMETER_CHANGE"/>
+            <value enum="296"  description="CURRENCY_CHANGE"/>
+            <value enum="297"  description="PRODUCT_ASSIGNMENT_CHANGE"/>
+            <value enum="298"  description="REFERENCE_PRICE_CHANGE"/>
+        </field>
+        <field number="379" name="BusinessRejectRefID" type="STRING"/>
+        <field number="380" name="BusinessRejectReason" type="INT">
+            <value enum="0"  description="OTHER"/>
+            <value enum="1"  description="UNKNOWN_ID"/>
+            <value enum="3"  description="UNSUPPORTED_MESSAGE_TYPE"/>
+            <value enum="4"  description="APPLICATION_NOT_AVAILABLE"/>
+            <value enum="5"  description="CONDITIONALLY_REQUIRED_FIELD_MISSING"/>
+            <value enum="6"  description="NOT_AUTHORIZED"/>
+        </field>
+        <field number="383" name="MaxMessageSize" type="LENGTH"/>
+        <field number="386" name="NoTradingSessions" type="NUMINGROUP"/>
+        <field number="432" name="ExpireDate" type="LOCALMKTDATE"/>
+        <field number="434" name="CxlRejResponseTo" type="CHAR">
+            <value enum="1"  description="ORDERCANCELREQUEST"/>
+            <value enum="2"  description="ORDERCANCELREPLACEREQUEST"/>
+        </field>
+        <field number="442" name="MultiLegReportingType" type="CHAR">
+            <value enum="1"  description="SINGLELEG"/>
+            <value enum="2"  description="MULTILEG"/>
+        </field>
+        <field number="447" name="PartyIDSource" type="CHAR">
+            <value enum="D"  description="PROPRIETARYCUSTOMCODE"/>
+            <value enum="H"  description="KASSENVEREIN_NUMBER"/>
+        </field>
+        <field number="448" name="PartyID" type="STRING"/>
+        <field number="452" name="PartyRole" type="INT">
+            <value enum="1"  description="EXECUTING_FIRM"/>
+            <value enum="4"  description="CLEARING_FIRM"/>
+            <value enum="7"  description="ENTERING_FIRM"/>
+            <value enum="10"  description="SETTLEMENT_LOCATION"/>
+            <value enum="12"  description="EXECUTING_TRADER"/>
+            <value enum="13"  description="ORDER_ORIGINATION_FIRM"/>
+            <value enum="16"  description="EXECUTING_SYSTEM"/>
+            <value enum="21"  description="CLEARING_ORGANIZATION"/>
+            <value enum="32"  description="BENEFICIARY"/>
+            <value enum="36"  description="ENTERING_TRADER"/>
+            <value enum="38"  description="FLEXIBLE_ACCOUNT_IDENTIFIER"/>
+            <value enum="55"  description="SESSION_ID"/>
+            <value enum="59"  description="EXECUTING_UNIT"/>
+            <value enum="75"  description="LOCATION_ID"/>
+            <value enum="90"  description="SETTLEMENT_FIRM"/>
+            <value enum="91"  description="SETTLEMENT_ACCOUNT"/>
+            <value enum="96"  description="TAKEUP_FIRM"/>
+        </field>
+        <field number="453" name="NoPartyIDs" type="NUMINGROUP"/>
+        <field number="454" name="NoSecurityAltID" type="NUMINGROUP">
+            <value enum="1"  description="ONE"/>
+        </field>
+        <field number="455" name="SecurityAltID" type="STRING"/>
+        <field number="456" name="SecurityAltIDSource" type="STRING">
+            <value enum="M"  description="MARKETPLACE_ASSIGNED_IDENTIFIER"/>
+        </field>
+        <field number="464" name="TestMessageIndicator" type="BOOLEAN">
+            <value enum="N"  description="PRODUCTION"/>
+            <value enum="Y"  description="TEST"/>
+        </field>
+        <field number="523" name="PartySubID" type="STRING"/>
+        <field number="527" name="SecondaryExecID" type="STRING"/>
+        <field number="534" name="NoAffectedOrders" type="NUMINGROUP"/>
+        <field number="535" name="AffectedOrderID" type="STRING"/>
+        <field number="552" name="NoSides" type="NUMINGROUP">
+            <value enum="1"  description="ONE_SIDE"/>
+            <value enum="2"  description="BOTH_SIDES"/>
+        </field>
+        <field number="553" name="Username" type="STRING"/>
+        <field number="554" name="Password" type="STRING"/>
+        <field number="555" name="NoLegs" type="NUMINGROUP"/>
+        <field number="564" name="LegPositionEffect" type="STRING">
+            <value enum="O"  description="OPEN"/>
+            <value enum="C"  description="CLOSE"/>
+        </field>
+        <field number="566" name="LegPrice" type="PRICE"/>
+        <field number="570" name="PreviouslyReported" type="BOOLEAN">
+            <value enum="N"  description="NO"/>
+        </field>
+        <field number="571" name="TradeReportID" type="STRING"/>
+        <field number="574" name="MatchType" type="STRING">
+            <value enum="3"  description="CONFIRMED_TRADE_REPORT"/>
+            <value enum="4"  description="AUTO_MATCH_INCOMING"/>
+            <value enum="5"  description="CROSS_AUCTION"/>
+            <value enum="7"  description="CALL_AUCTION"/>
+            <value enum="11"  description="AUTO_MATCH_RESTING"/>
+        </field>
+        <field number="600" name="LegSymbol" type="STRING"/>
+        <field number="602" name="LegSecurityID" type="STRING"/>
+        <field number="609" name="LegSecurityType" type="STRING">
+            <value enum="1"  description="MULTILEG_INSTRUMENT"/>
+            <value enum="2"  description="UNDERLYING_LEG"/>
+        </field>
+        <field number="623" name="LegRatioQty" type="QTY"/>
+        <field number="624" name="LegSide" type="STRING">
+            <value enum="1"  description="BUY"/>
+            <value enum="2"  description="SELL"/>
+        </field>
+        <field number="625" name="TradingSessionSubID" type="STRING">
+            <value enum="2"  description="OPENINGAUCTIONONLY"/>
+            <value enum="4"  description="CLOSINGAUCTIONONLY"/>
+            <value enum="8"  description="AUCTIONONLY"/>
+        </field>
+        <field number="637" name="LegLastPx" type="PRICE"/>
+        <field number="748" name="TotNumTradeReports" type="INT"/>
+        <field number="762" name="SecuritySubType" type="INT"/>
+        <field number="789" name="NextExpectedMsgSeqNum" type="SEQNUM"/>
+        <field number="802" name="NoPartySubIDs" type="NUMINGROUP"/>
+        <field number="803" name="PartySubIDType" type="INT">
+            <value enum="2"  description="PERSON"/>
+        </field>
+        <field number="809" name="NoUsernames" type="NUMINGROUP"/>
+        <field number="830" name="TransferReason" type="STRING">
+            <value enum="1"  description="OWNER"/>
+            <value enum="2"  description="CLEARER"/>
+        </field>
+        <field number="836" name="PegOffsetType" type="INT">
+            <value enum="0"  description="PRICE"/>
+            <value enum="4"  description="PERCENTAGE"/>
+        </field>
+        <field number="851" name="LastLiquidityInd" type="INT">
+            <value enum="1"  description="ADDLIQUIDITY"/>
+            <value enum="2"  description="REMOVEDLIQUIDITY"/>
+            <value enum="5"  description="TRIGGERED_STOP_ORDER"/>
+            <value enum="6"  description="TRIGGERED_CONTINGENCY_ORDER"/>
+            <value enum="7"  description="TRIGGERED_MARKET_ORDER"/>
+        </field>
+        <field number="856" name="TradeReportType" type="INT">
+            <value enum="0"  description="SUBMIT"/>
+            <value enum="1"  description="ALLEGED"/>
+            <value enum="5"  description="NO_WAS"/>
+            <value enum="7"  description="LOCKED_IN_TRADE_BREAK"/>
+        </field>
+        <field number="880" name="TrdMatchID" type="STRING"/>
+        <field number="923" name="UserRequestID" type="STRING"/>
+        <field number="924" name="UserRequestType" type="INT">
+            <value enum="1"  description="LOGONUSER"/>
+            <value enum="2"  description="LOGOFFUSER"/>
+        </field>
+        <field number="925" name="NewPassword" type="STRING"/>
+        <field number="926" name="UserStatus" type="INT">
+            <value enum="1"  description="LOGGEDIN"/>
+            <value enum="2"  description="NOTLOGGEDIN"/>
+            <value enum="6"  description="OTHER"/>
+            <value enum="7"  description="FORCED_USER_LOGOUT_BY_EXCHANGE"/>
+            <value enum="8"  description="SESSION_SHUTDOWN_WARNING"/>
+            <value enum="10"  description="USER_STOPPED"/>
+            <value enum="11"  description="USER_RELEASED"/>
+        </field>
+        <field number="927" name="UserStatusText" type="STRING"/>
+        <field number="1003" name="TradeID" type="STRING"/>
+        <field number="1005" name="SideTradeReportID" type="STRING"/>
+        <field number="1009" name="SideLastQty" type="INT"/>
+        <field number="1031" name="CustOrderHandlingInst" type="CHAR"/>
+        <field number="1084" name="DisplayMethod" type="CHAR">
+            <value enum="1"  description="INITIAL"/>
+            <value enum="3"  description="RANDOM"/>
+        </field>
+        <field number="1085" name="DisplayLowQty" type="QTY"/>
+        <field number="1086" name="DisplayHighQty" type="QTY"/>
+        <field number="1100" name="TriggerType" type="CHAR">
+            <value enum="4"  description="PRICEMOVEMENT"/>
+        </field>
+        <field number="1102" name="TriggerPrice" type="PRICE"/>
+        <field number="1115" name="OrderCategory" type="CHAR">
+            <value enum="1"  description="ORDER"/>
+            <value enum="2"  description="QUOTE"/>
+        </field>
+        <field number="1126" name="OrigTradeID" type="STRING"/>
+        <field number="1138" name="DisplayQty" type="QTY"/>
+        <field number="1144" name="ImpliedMarketIndicator" type="INT">
+            <value enum="0"  description="NOT_IMPLIED"/>
+            <value enum="3"  description="BOTH_IMPLIEDIN_AND_IMPLIEDOUT"/>
+        </field>
+        <field number="1148" name="LowLimitPrice" type="PRICE"/>
+        <field number="1149" name="HighLimitPrice" type="PRICE"/>
+        <field number="1227" name="ProductComplex" type="INT">
+            <value enum="1"  description="SIMPLE_INSTRUMENT"/>
+            <value enum="2"  description="STANDARD_OPTION_STRATEGY"/>
+            <value enum="3"  description="NONSTANDARD_OPTION_STRATEGY"/>
+            <value enum="4"  description="VOLATILITY_STRATEGY"/>
+            <value enum="5"  description="FUTURES_SPREAD"/>
+            <value enum="6"  description="INTER_PRODUCT_SPREAD"/>
+            <value enum="7"  description="STANDARD_FUTURE_STRATEGY"/>
+            <value enum="8"  description="PACK_AND_BUNDLE"/>
+            <value enum="9"  description="STRIP"/>
+        </field>
+        <field number="1300" name="MarketSegmentID" type="STRING"/>
+        <field number="1301" name="MarketID" type="STRING"/>
+        <field number="1657" name="NoRequestingPartyIDs" type="NUMINGROUP"/>
+        <field number="1658" name="RequestingPartyID" type="STRING"/>
+        <field number="1659" name="RequestingPartyIDSource" type="CHAR">
+            <value enum="D"  description="PROPRIETARYCUSTOMCODE"/>
+        </field>
+        <field number="1660" name="RequestingPartyRole" type="INT">
+            <value enum="7"  description="ENTERING_FIRM"/>
+            <value enum="12"  description="EXECUTING_TRADER"/>
+            <value enum="16"  description="EXECUTING_SYSTEM"/>
+        </field>
+        <field number="1310" name="NoMarketSegments" type="NUMINGROUP"/>
+        <field number="1324" name="ListUpdateAction" type="CHAR">
+            <value enum="A"  description="ADD"/>
+            <value enum="D"  description="DELETE"/>
+        </field>
+        <field number="1368" name="TradSesEvent" type="INT">
+            <value enum="102"  description="MARKET_RESET"/>
+            <value enum="103"  description="END_OF_RESTATEMENT"/>
+            <value enum="105"  description="SERVICE_RESUMED"/>
+            <value enum="200"  description="NO_MORE_MESSAGES"/>
+            <value enum="201"  description="MESSAGE_TRANSMISSION_ENDED"/>
+            <value enum="202"  description="MESSAGE_PROCESSING_SUSPENDED"/>
+            <value enum="203"  description="MESSAGE_PROCESSING_RESUMED"/>
+        </field>
+        <field number="1369" name="MassActionReportID" type="STRING"/>
+        <field number="1370" name="NoNotAffectedOrders" type="NUMINGROUP"/>
+        <field number="1371" name="NotAffectedOrderID" type="STRING"/>
+        <field number="1372" name="NotAffOrigClOrdID" type="STRING"/>
+        <field number="1373" name="MassActionType" type="INT">
+            <value enum="3"  description="CANCEL_ORDERS"/>
+        </field>
+        <field number="1374" name="MassActionScope" type="INT">
+            <value enum="1"  description="ALL_ORDERS"/>
+            <value enum="9"  description="ALL_ORDERS_FOR_SEGMENT"/>
+        </field>
+        <field number="1375" name="MassActionResponse" type="INT">
+            <value enum="0"  description="REJECTED"/>
+            <value enum="1"  description="ACCEPTED"/>
+            <value enum="2"  description="COMPLETED"/>
+        </field>
+        <field number="1376" name="MassActionRejectReason" type="INT">
+            <value enum="99"  description="OTHER"/>
+        </field>
+        <field number="1377" name="MultilegModel" type="INT">
+            <value enum="0"  description="PREDEFINED_MULTILEG_SECURITY"/>
+            <value enum="1"  description="USERDEFINED_MULTILEG_SECURITY"/>
+        </field>
+        <field number="1408" name="DefaultCstmApplVerID" type="STRING"/>
+        <field number="1409" name="SessionStatus" type="INT">
+            <value enum="4"  description="SESSIONLOGOUTCOMPLETE"/>
+            <value enum="5"  description="INVALIDUSERNAMEORPASSWORD"/>
+        </field>
+        <field number="1418" name="LegLastQty" type="QTY"/>
+        <field number="1444" name="SideLiquidityInd" type="INT">
+            <value enum="1"  description="ADDED_LIQUIDITY"/>
+            <value enum="2"  description="REMOVED_LIQUIDITY"/>
+            <value enum="4"  description="AUCTION__NEITHER_PASSIVE_NOR_AGGRESSIVE"/>
+        </field>
+        <field number="1461" name="NoTargetPartyIDs" type="NUMINGROUP"/>
+        <field number="1462" name="TargetPartyID" type="STRING"/>
+        <field number="1463" name="TargetPartyIDSource" type="CHAR">
+            <value enum="D"  description="PROPRIETARYCUSTOMCODE"/>
+        </field>
+        <field number="1464" name="TargetPartyRole" type="INT">
+            <value enum="12"  description="EXECUTING_TRADER"/>
+        </field>
+        <field number="1506" name="SideTradeID" type="STRING"/>
+        <field number="1596" name="ClearingTradePrice" type="PRICE"/>
+        <field number="1600" name="FIXEngineName" type="STRING"/>
+        <field number="1601" name="FIXEngineVersion" type="STRING"/>
+        <field number="1602" name="FIXEngineVendor" type="STRING"/>
+        <field number="1603" name="ApplicationSystemName" type="STRING"/>
+        <field number="1604" name="ApplicationSystemVersion" type="STRING"/>
+        <field number="1605" name="ApplicationSystemVendor" type="STRING"/>
+        <field number="1607" name="SecurityRejectReason" type="INT"/>
+        <field number="1624" name="NoMatchInst" type="NUMINGROUP"/>
+        <field number="1625" name="MatchInst" type="INT">
+            <value enum="2"  description="DO_NOT_MATCH"/>
+        </field>
+        <field number="1649" name="RelatedSymbol" type="STRING"/>
+        <field number="1650" name="RelatedSecurityID" type="STRING"/>
+        <field number="1672" name="PartyDetailStatus" type="INT">
+            <value enum="0"  description="ACTIVE"/>
+            <value enum="1"  description="SUSPENDED"/>
+        </field>
+        <field number="1767" name="RiskLimitAction" type="INT">
+            <value enum="0"  description="QUEUE_INBOUND"/>
+            <value enum="2"  description="REJECT"/>
+            <value enum="4"  description="WARNING"/>
+        </field>
+        <field number="1815" name="TradingCapacity" type="INT">
+            <value enum="1"  description="CUSTOMER"/>
+            <value enum="5"  description="PRINCIPAL"/>
+            <value enum="6"  description="MARKET_MAKER"/>
+        </field>
+        <field number="1823" name="Triggered" type="INT">
+            <value enum="0"  description="NOT_TRIGGERED"/>
+            <value enum="1"  description="TRIGGERED"/>
+        </field>
+        <field number="1824" name="AffectedOrigClOrdID" type="STRING"/>
+        <field number="1851" name="StrategyLinkID" type="STRING"/>
+        <field number="1893" name="LegExecID" type="STRING"/>
+        <field number="2329" name="PartyActionType" type="INT">
+            <value enum="1"  description="HALT_TRADING"/>
+            <value enum="2"  description="REINSTATE"/>
+        </field>
+        <field number="2331" name="PartyActionReportID" type="STRING"/>
+        <field number="2332" name="PartyActionResponse" type="INT">
+            <value enum="1"  description="COMPLETED"/>
+        </field>
+        <field number="2404" name="ComplianceText" type="STRING"/>
+        <field number="2490" name="TradeNumber" type="INT"/>
+        <field number="25008" name="FreeText2" type="STRING"/>
+        <field number="25009" name="FreeText3" type="STRING"/>
+        <field number="25023" name="ReturnCode" type="INT"/>
+        <field number="25024" name="ReturnCodeSource" type="STRING">
+            <value enum="FIX GATEWAY"  description="FIX_GATEWAY"/>
+            <value enum="TRADING SYSTEM"  description="TRADING_SYSTEM"/>
+        </field>
+        <field number="25025" name="ReturnCodeText" type="STRING"/>
+        <field number="25027" name="PartyIDClearingUnit" type="STRING"/>
+        <field number="25100" name="CrossReqID" type="STRING"/>
+        <field number="25101" name="CrossReqAckStatus" type="INT">
+            <value enum="0"  description="ACCEPTED"/>
+            <value enum="1"  description="REJECTED"/>
+        </field>
+        <field number="25107" name="FreeText4" type="STRING"/>
+        <field number="25108" name="OrderIDSfx" type="STRING"/>
+        <field number="25120" name="PartyIDSettlementUnit" type="STRING"/>
+        <field number="28585" name="SideLastPx" type="PRICE"/>
+        <field number="28586" name="OrderSide" type="CHAR">
+            <value enum="1"  description="BUY"/>
+            <value enum="2"  description="SELL"/>
+        </field>
+        <field number="28587" name="RelatedProductComplex" type="INT">
+            <value enum="2"  description="STANDARD_OPTION_STRATEGY"/>
+            <value enum="3"  description="NONSTANDARD_OPTION_STRATEGY"/>
+            <value enum="4"  description="VOLATILITY_STRATEGY"/>
+            <value enum="5"  description="FUTURES_SPREAD"/>
+            <value enum="6"  description="INTER_PRODUCT_SPREAD"/>
+            <value enum="7"  description="STANDARD_FUTURE_STRATEGY"/>
+            <value enum="8"  description="PACK_AND_BUNDLE"/>
+            <value enum="9"  description="STRIP"/>
+        </field>
+        <field number="28610" name="MatchSubType" type="INT">
+            <value enum="2"  description="OPENING_AUCTION"/>
+            <value enum="4"  description="CLOSING_AUCTION"/>
+            <value enum="6"  description="INTRADAY_AUCTION"/>
+            <value enum="8"  description="CIRCUIT_BREAKER_AUCTION"/>
+        </field>
+        <field number="28614" name="NumberOfSecurities" type="INT"/>
+        <field number="28710" name="PriceValidityCheckType" type="INT">
+            <value enum="0"  description="NONE"/>
+            <value enum="1"  description="OPTIONAL"/>
+            <value enum="2"  description="MANDATORY"/>
+        </field>
+        <field number="28715" name="LegAccount" type="STRING">
+        </field>
+        <field number="28721" name="MassActionReason" type="INT">
+            <value enum="0"  description="NO_SPECIAL_REASON"/>
+            <value enum="1"  description="STOP_TRADING"/>
+            <value enum="2"  description="EMERGENCY"/>
+            <value enum="3"  description="MARKET_MAKER_PROTECTION"/>
+            <value enum="6"  description="SESSION_LOSS"/>
+            <value enum="7"  description="DUPLICATE_SESSION_LOGIN"/>
+            <value enum="8"  description="CLEARING_RISK_CONTROL"/>
+            <value enum="105"  description="PRODUCT_STATE_HALT"/>
+            <value enum="106"  description="PRODUCT_STATE_HOLIDAY"/>
+            <value enum="107"  description="INSTRUMENT_SUSPENSION"/>
+            <value enum="109"  description="STRATEGY_CANCELLATION"/>
+            <value enum="110"  description="CIRCUIT_BREAKER"/>
+            <value enum="111"  description="PRODUCT_TEMPORARILY_NOT_TRADEABLE"/>
+            <value enum="113"  description="INSTRUMENT_STOPPED"/>
+        </field>
+        <field number="28736" name="ClearingTradeQty" type="QTY"/>
+        <field number="28744" name="MatchInstCrossID" type="STRING"/>
+        <field number="28745" name="Crossed" type="INT">
+            <value enum="1"  description="CROSS_REJECTED"/>
+        </field>
+        <field number="28890" name="DeliveryType" type="INT">
+        </field>
+        <field number="30015" name="UCurrency" type="CURRENCY"/>
+        <field number="30018" name="UExecInst" type="MULTIPLEVALUESTRING">
+            <value enum="H"  description="REINSTATE_ON_SYSTEM_FAILURE"/>
+            <value enum="Q"  description="CANCEL_ON_SYSTEM_FAILURE"/>
+        </field>
+        <field number="30044" name="UPrice" type="PRICE"/>
+        <field number="30060" name="UTransactTime" type="STRING"/>
+        <field number="30075" name="UTradeDate" type="LOCALMKTDATE"/>
+        <field number="30100" name="UExDestination" type="STRING"/>
+        <field number="30151" name="ULeavesQty" type="QTY"/>
+        <field number="30893" name="ULastFragment" type="BOOLEAN">
+            <value enum="N"  description="NOT_LAST_MESSAGE"/>
+            <value enum="Y"  description="LAST_MESSAGE"/>
+        </field>
+    </fields>
+</fix>

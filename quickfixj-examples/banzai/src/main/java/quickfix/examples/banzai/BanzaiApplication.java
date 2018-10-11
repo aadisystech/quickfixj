@@ -370,6 +370,7 @@ public class BanzaiApplication implements Application {
         newOrderSingle.setField(tifToFIXTif(order.getTIF()));
         //RB - added for testing
         newOrderSingle.setField(new OddLot(false));
+        newOrderSingle.setField(new Aggregated(false));
         return newOrderSingle;
     }
 
@@ -418,6 +419,9 @@ public class BanzaiApplication implements Application {
         message.setField(new OrderQty(order.getQuantity()));
 
         orderTableModel.addID(order, id);
+        //RB to test new tags
+        message.setField(new OddLot(false));
+        message.setField(new Aggregated(false));
         send(message, order.getSessionID());
     }
 
@@ -472,6 +476,9 @@ public class BanzaiApplication implements Application {
             message.setField(new OrderQty(newOrder.getQuantity()));
         if (!order.getLimit().equals(newOrder.getLimit()))
             message.setField(new Price(newOrder.getLimit()));
+        //RB to test new tags
+        message.setField(new OddLot(false));
+        message.setField(new Aggregated(false));
         return message;
     }
 

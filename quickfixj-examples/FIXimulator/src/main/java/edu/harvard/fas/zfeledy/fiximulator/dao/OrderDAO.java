@@ -41,16 +41,10 @@ public class OrderDAO {
 
     public void addOrder(Order order) {
         System.out.println("Add Order " + order.toString());
-        Connection connection = null;
-        try {
-            Class.forName(driver).newInstance();
-            connection = DriverManager.getConnection(url, user, pass);
+        Connection connection = getConnection();
+        if (connection == null) {
+            return;
         }
-        catch(Exception e) {
-            System.out.println("Could not initialize the database.");
-            e.printStackTrace();
-        }
-
         try(PreparedStatement statement = connection.prepareStatement(SQLConstants.ADD_ORDER)) {
             statement.setString(1, order.getID());
             statement.setString(2, order.getSide());
@@ -75,7 +69,32 @@ public class OrderDAO {
         }
     }
 
+    private Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName(driver).newInstance();
+            connection = DriverManager.getConnection(url, user, pass);
+        }
+        catch(Exception e) {
+            System.out.println("Could not initialize the database.");
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
     public void updateOrder(Order order) {
         System.out.println("Update " + order.toString());
+        Connection connection = getConnection();
+        if (connection == null) {
+            return;
+        }
+        try(PreparedStatement statement = connection.prepareStatement(SQLConstants.UPDATE_ORDER)) {
+            statement.setString(1, order.getStatus());
+            statement.setString(2, order.getID());
+            int result = statement.executeUpdate();
+            System.out.println("result " + result);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -7,5 +7,5 @@ public interface SQLConstants {
             "order_open_quantity, order_executed_quantity, order_limit_price, order_avg_price) " +
             "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    String UPDATE_ORDER = "";
+    String UPDATE_ORDER = "UPDATE orders set order_status = ? WHERE order_id = ?;";
 }

@@ -281,7 +281,7 @@ public class FIXimulatorApplication extends MessageCracker
         acknowledgement.setLeavesQty(order.getOpen());
         sendExecution(acknowledgement);
         order.setReceivedOrder(false);
-        orders.update();
+        orders.update(order);
     }
     
     public void reject( Order order ) {
@@ -292,7 +292,7 @@ public class FIXimulatorApplication extends MessageCracker
         reject.setLeavesQty(order.getOpen());
         sendExecution(reject);
         order.setReceivedOrder(false);
-        orders.update();
+        orders.update(order);
     }
     
     public void dfd( Order order ) {
@@ -304,7 +304,7 @@ public class FIXimulatorApplication extends MessageCracker
         dfd.setCumQty(order.getExecuted());
         dfd.setAvgPx(order.getAvgPx());
         sendExecution(dfd);
-        orders.update();
+        orders.update(order);
     }
 
     public void pendingCancel( Order order ) {
@@ -317,7 +317,7 @@ public class FIXimulatorApplication extends MessageCracker
         pending.setAvgPx(order.getAvgPx());
         sendExecution(pending);
         order.setReceivedCancel(false);
-        orders.update();
+        orders.update(order);
     }
         
     public void cancel( Order order ) {
@@ -330,7 +330,7 @@ public class FIXimulatorApplication extends MessageCracker
         cancel.setAvgPx(order.getAvgPx());
         sendExecution(cancel);
         order.setReceivedCancel(false);
-        orders.update();
+        orders.update(order);
     }
 
     public void rejectCancelReplace( Order order, boolean cancel ) {
@@ -367,7 +367,7 @@ public class FIXimulatorApplication extends MessageCracker
         
         // *** Send message ***
         sendMessage(rejectMessage);
-        orders.update();
+        orders.update(order);
     }
         
     public void pendingReplace( Order order ) {
@@ -380,7 +380,7 @@ public class FIXimulatorApplication extends MessageCracker
         pending.setAvgPx(order.getAvgPx());
         order.setReceivedReplace(false);
         sendExecution(pending);
-        orders.update();
+        orders.update(order);
     }
 
     public void replace( Order order ) {
@@ -393,7 +393,7 @@ public class FIXimulatorApplication extends MessageCracker
         replace.setAvgPx(order.getAvgPx());
         order.setReceivedReplace(false);
         sendExecution(replace);
-        orders.update();
+        orders.update(order);
     }
     
     public void execute( Execution execution ){
@@ -417,7 +417,7 @@ public class FIXimulatorApplication extends MessageCracker
                      /(order.getExecuted() + fillQty );
         order.setAvgPx(avgPx);
         order.setExecuted(order.getExecuted() + fillQty);
-        orders.update();
+        orders.update(order);
         // update execution
         execution.setExecTranType(ExecTransType.NEW);
         execution.setLeavesQty(order.getOpen());
@@ -448,7 +448,7 @@ public class FIXimulatorApplication extends MessageCracker
             order.setAvgPx(0);
             order.setExecuted(0);
         }
-        orders.update();
+        orders.update(order);
         // update execution
         bust.setExecTranType(ExecTransType.CANCEL);
         bust.setLeavesQty(order.getOpen());
@@ -488,7 +488,7 @@ public class FIXimulatorApplication extends MessageCracker
         
         order.setAvgPx(avgPx);
         order.setExecuted(newCumQty);
-        orders.update();
+        orders.update(order);
         
         // update execution
         correction.setExecTranType(ExecTransType.CORRECT);
@@ -964,7 +964,7 @@ public class FIXimulatorApplication extends MessageCracker
                         order.setStatus(OrdStatus.PARTIALLY_FILLED);
                         order.setExecuted(order.getExecuted() + fillQty);
                         order.setAvgPx(thisAvg);
-                        orders.update();
+                        orders.update(order);
                         // create execution
                         Execution partial = new Execution(order);
                         partial.setExecType(ExecType.PARTIAL_FILL);
@@ -1001,7 +1001,7 @@ public class FIXimulatorApplication extends MessageCracker
                         order.setStatus(OrdStatus.FILLED);
                         order.setExecuted(order.getExecuted() + fillQty);
                         order.setAvgPx(thisAvg);
-                        orders.update();
+                        orders.update(order);
                         // create execution
                         Execution partial = new Execution(order);
                         partial.setExecType(ExecType.FILL);

@@ -11,6 +11,8 @@ package edu.harvard.fas.zfeledy.fiximulator.core;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import edu.harvard.fas.zfeledy.fiximulator.dao.OrderDAO;
 import edu.harvard.fas.zfeledy.fiximulator.ui.OrderTableModel;
 
 public class OrderSet {
@@ -32,10 +34,12 @@ public class OrderSet {
             orders.remove(0);
         }
         orderTableModel.update();
+        OrderDAO.getInstance().addOrder(order);
     }
     
-    public void update () {
+    public void update (Order order) {
         orderTableModel.update();
+        OrderDAO.getInstance().updateOrder(order);
     }
     
     public void addCallback(OrderTableModel orderTableModel){

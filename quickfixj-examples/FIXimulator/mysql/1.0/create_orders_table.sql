@@ -18,5 +18,7 @@ order_open_quantity decimal(10,2),
 order_executed_quantity decimal(10,2),
 order_limit_price decimal(8,2),
 order_avg_price decimal(8,2),
+order_rec_create_time timestamp not null,
+order_rec_update_time timestamp not null,
 PRIMARY KEY pk_order_id (order_id)
 ) engine=InnoDB;

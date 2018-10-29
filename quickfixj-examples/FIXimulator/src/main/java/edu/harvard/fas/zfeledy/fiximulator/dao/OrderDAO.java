@@ -4,6 +4,8 @@ import edu.harvard.fas.zfeledy.fiximulator.core.FIXimulator;
 import edu.harvard.fas.zfeledy.fiximulator.core.Order;
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class OrderDAO {
 
@@ -61,7 +63,8 @@ public class OrderDAO {
             statement.setDouble(13, order.getExecuted());
             statement.setDouble(14, order.getLimit());
             statement.setDouble(15, order.getAvgPx());
-
+            statement.setTimestamp(16, Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
+            statement.setTimestamp(17, Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
             boolean result = statement.execute();
             System.out.println("result " + result);
         } catch(Exception e) {
@@ -92,7 +95,8 @@ public class OrderDAO {
             statement.setString(1, order.getStatus());
             statement.setDouble(2, order.getOpen());
             statement.setDouble(3, order.getExecuted());
-            statement.setString(4, order.getID());
+            statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
+            statement.setString(5, order.getID());
             int result = statement.executeUpdate();
             System.out.println("result " + result);
         } catch(Exception e) {

@@ -6,6 +6,9 @@ import edu.harvard.fas.zfeledy.fiximulator.core.FIXimulator;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class ExecutionDAO {
 
@@ -57,6 +60,7 @@ public class ExecutionDAO {
             statement.setDouble(7, execution.getLeavesQty());
             statement.setDouble(8, execution.getCumQty());
             statement.setDouble(9, execution.getAvgPx());
+            statement.setTimestamp(10, Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC"))));
             boolean result = statement.execute();
             System.out.println("result " + result);
         } catch(Exception e) {

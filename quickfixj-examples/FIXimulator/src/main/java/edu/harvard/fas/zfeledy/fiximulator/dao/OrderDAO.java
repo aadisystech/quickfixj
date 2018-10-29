@@ -90,7 +90,9 @@ public class OrderDAO {
         }
         try(PreparedStatement statement = connection.prepareStatement(SQLConstants.UPDATE_ORDER)) {
             statement.setString(1, order.getStatus());
-            statement.setString(2, order.getID());
+            statement.setDouble(2, order.getOpen());
+            statement.setDouble(3, order.getExecuted());
+            statement.setString(4, order.getID());
             int result = statement.executeUpdate();
             System.out.println("result " + result);
         } catch(Exception e) {

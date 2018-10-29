@@ -12,6 +12,8 @@ package edu.harvard.fas.zfeledy.fiximulator.core;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import edu.harvard.fas.zfeledy.fiximulator.dao.ExecutionDAO;
 import edu.harvard.fas.zfeledy.fiximulator.ui.ExecutionTableModel;
 
 public class ExecutionSet {
@@ -31,6 +33,7 @@ public class ExecutionSet {
             executions.remove(0);
         }
         executionTableModel.update();
+        ExecutionDAO.getInstance().addExecution(execution);
     }
 
     public void update () {

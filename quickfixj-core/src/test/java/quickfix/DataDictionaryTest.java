@@ -876,6 +876,19 @@ public class DataDictionaryTest {
         dictionary.validate(messageWithGroupLevel2);
     }
 
+    @Test
+    public void testValidateFieldsOutOfOrderForResendRequest() throws Exception {
+        final DataDictionary dictionary = new DataDictionary(getFix42Dictionary());
+        dictionary.setCheckFieldsOutOfOrder(false);
+        Message messageWithGroupLevel1 = new Message(
+                "8=FIX.4.2\0019=185\00135=4\00149=SENDER\00156=TARGET\00152=20110412-13:43:00\001" +
+                "115=802C41\00134=1\001123=Y\00143=Y\00136=861\00110=68\001",
+                dictionary);
+        dictionary.validate(messageWithGroupLevel1);
+
+    }
+
+
     // QFJ-535
     @Test
     public void testNewOrderSingleWithCorrectTag50() throws Exception {
@@ -1319,6 +1332,13 @@ public class DataDictionaryTest {
     public static DataDictionary getDictionary() throws Exception {
         if (testDataDictionary == null) {
             testDataDictionary = getDictionary("FIX44.xml");
+        }
+        return testDataDictionary;
+    }
+
+    public static DataDictionary getFix42Dictionary() throws Exception {
+        if (testDataDictionary == null) {
+            testDataDictionary = getDictionary("FIX42.xml");
         }
         return testDataDictionary;
     }
